@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del pokemon</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header id="main-header">
+		
+		<p id="logo-header">
+            <span class="site-name">Gonzalo Rodriguez</span>
+            
+			<span class="site-desc">Pokedex por medio del consumo de una api</span>
+        </p> <!-- / #logo-header -->
+
+		<nav>
+            <img class="pequeña" src="/static/img/logoPo.png" />
+		</nav><!-- / nav -->
+
+	</header><!-- / #main-header -->
+    {% if descrip %}
+
+    <br>       
+
+<div class="padre">
+     <div  style="border-style:ridge;border-width:5px;">
+        <div class="padre">
+                    <img src="https://pokeres.bastionbot.org/images/pokemon/{{descrip.id}}.png" alt="Image" style="height:200px; padding:8px" />
+        
+        </div>
+        <br>
+        <div>
+            <table border="1px">                
+                <tr>
+                    <th>
+                        Número del pokemon:
+                    </th>
+                    <td>
+                        {{descrip.id}}
+                    </td>
+                </tr>  
+                <tr>
+                    <th>
+                        Nombre:
+                    </th>
+                    <td>
+                        {{descrip.nombre}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Descripción del pokemon:
+                    </th>
+                    <td>
+                        {{descrip.descripPoke}} 
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Genera del pokemon:
+                    </th>
+                    <td>
+                        {{descrip.gene}} 
+                    </td>
+                </tr>               
+            </table>   
+                 
+        
+        <div class="padre">
+        <a class="boton_personalizado" href="{% url 'appPokedex:ini' %}">Regresar</a>
+    </div>
+        </div>
+  </div>
+       
+   
+    {% else %}
+    <p>No trae nada</p>
+    {% endif  %}
+</body>
+</html>

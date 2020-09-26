@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex 150</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header id="main-header">
+		
+		<p id="logo-header">
+            <span class="site-name">Gonzalo Rodriguez</span>
+            
+			<span class="site-desc">Pokedex por medio del consumo de una api</span>
+        </p> <!-- / #logo-header -->
+
+		<nav>
+            <img class="pequeña" src="/static/img/logoPo.png" />
+          
+		</nav><!-- / nav -->
+
+	</header><!-- / #main-header -->
+<div >
+    <section id="main-content"></section>
+    {% if pokemons %}
+    <div style="overflow-x:auto;">
+        <div style="overflow-x:auto;">
+        <table class="table table-condensed" style="border-spacing: 5px;" align="center">
+        
+        {% for pokemon in pokemons %}
+        <td style="width:20%">
+        <center>
+        <div style="border-style:ridge;border-width:1px;">
+        <a href="">
+        <img src="https://pokeres.bastionbot.org/images/pokemon/{{forloop.counter}}.png" alt="Image" style="height:200px; padding:8px" />
+        </a>
+        <br />
+        <div>
+        <h4> {{ pokemon.name }} </h4>
+        <h4>Numero del pokemon: {{forloop.counter}}</h4>
+        <h4> <a class="boton_personalizado" href="{% url 'appPokedex:det' forloop.counter %}"  ALIGN="center" ><i class="fas fa-eye">Ver detalle</i></a></h4>      
+
+        
+        </div>
+        
+        <br />
+        </div>
+        </center>
+        </td>
+        <p> </p>
+       
+       {% if forloop.counter|divisibleby:5 %} 
+        <tr></tr>          
+        {% endif  %}
+        {% endfor  %}
+    
+        </table>
+        </div>
+        </div>
+        {% else %}
+        <p>No trae nada</p>
+      {% endif  %}
+    </section> <!-- / #main-content -->
+</div>
+</body>
+</html>
