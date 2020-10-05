@@ -8,11 +8,11 @@ def index(request):
     if respons.status_code == 200: #comprueba que la conexion a la api no haya fallado      
         diccionario = respons.json() # vuelve los datos obtenidos en un json             
         contexto = {'pokemons': diccionario['results']}   # se obtiene un dicionario de datos de solo donde existe el nombre y el numero    
-        return render (request, '../Templates/index.html', contexto)
+        return render (request, 'index.html', contexto)
     else: #si la conexion falla se renvia a la pagina sin ningun contexto
-         return render (request, '../Templates/index.html')
+         return render (request, 'index.html')
+
 def verDetalle(request,pokemon_id):# se recibe el id del pokemon que se desea saber el detalle
-     
     response = requests.get(' https://pokeapi.co/api/v2/pokemon-species/'+pokemon_id+'/') # se obtiene el detalle del pokemon seleccionado en la cuadricula
     if response.status_code == 200:   #comprueba que la conexion a la api no haya fallado    
         
@@ -25,7 +25,7 @@ def verDetalle(request,pokemon_id):# se recibe el id del pokemon que se desea sa
                 genera = gener['genus'] # se guarda el genera en el idioma deseado
         detallePok = {'nombre': descripcion['name'], 'id' : descripcion['id'] ,'descripPoke': text , 'gene': genera}  # se crea un diccionario con los datos obtenidos
         contexto = {'descrip' : detallePok}    #creacion del contexto para utilizar en el html
-        return render (request, '../Templates/detalleP.html', contexto)
+        return render (request, 'detalleP.html', contexto)
     else:    
         
-        return render (request, '../Templates/detalleP.html')
+        return render (request, 'detalleP.html')
